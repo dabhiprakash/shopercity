@@ -135,11 +135,7 @@ if (isset($_POST['search'])) {
                         </li>
                         <?php } else if (!isset($_SESSION['is_active'])) {
                             ?>
-                           <li class="<?php if ($activePage == 'plan') {
-                            echo "active";
-                        } ?>">
                             <a href="plan.php">Plan</a>
-                        </li>
                         <?php 
                         } ?>
                         <li class="<?php if ($activePage == 'about') {
