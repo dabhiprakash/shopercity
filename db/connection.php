@@ -6,9 +6,9 @@ session_start();
 
 // Define database connection parameters for local and live environments
 $hostname = "localhost";
-$username = "root";
-$password = "";
-$db = "shopercity";
+$username = "shopercity_user";
+$password = "nCq53z~4";
+$db = "shopercity_db";
 
 $conn = mysqli_connect($hostname, $username, $password, $db);
 
