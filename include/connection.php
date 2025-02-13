@@ -8,9 +8,9 @@
 
 	
 		$hostname = "localhost";
-		$username = "shopercity_user";
-		$password = "nCq53z~4";
-		$db = "shopercity_db";
+		$username = "root";
+		$password = "";
+		$db = "shopercity";
 	
 	// Create connection
 	try {

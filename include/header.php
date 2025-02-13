@@ -152,6 +152,9 @@ if (isset($_POST['search'])) {
                                 } ?>">
                                     <a href="account.php">Account</a>
                                 </li>
+                                <li>
+                                    <a href="user/login.php">Add Resort</a>
+                                </li>
                                 <?php
                             }
                         }

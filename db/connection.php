@@ -1,14 +1,14 @@
 <?php
 ob_start();
 if(!isset($_SESSION)) {
-    session_start();
+session_start();
 }
 
 // Define database connection parameters for local and live environments
 $hostname = "localhost";
-$username = "shopercity_user";
-$password = "nCq53z~4";
-$db = "shopercity_db";
+$username = "root";
+$password = "";
+$db = "shopercity";
 
 $conn = mysqli_connect($hostname, $username, $password, $db);
 

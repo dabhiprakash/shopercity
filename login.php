@@ -1,7 +1,7 @@
 <?php 
 	$referral_id = "";
 	if($_GET){
-		$referral_id = $_GET['ref_id'];
+		$referral_id    =   $_GET['ref_id'];
 	}
 	
 ?>
@@ -18,7 +18,7 @@
         <div class="page-wrapper">
             <?php 
             require_once "include/header.php";
-			if(isset($_SESSION) && $_SESSION['user_id']){
+			if(isset($_SESSION) && isset($_SESSION['user_id'])){
 				header('location: index.php');
 			}
             ?>

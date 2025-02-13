@@ -1,0 +1,2 @@
+13-02-2024
+ALTER TABLE `vendor` ADD `user_id` INT NULL DEFAULT NULL AFTER `id`;
