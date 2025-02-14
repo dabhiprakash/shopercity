@@ -26,6 +26,9 @@
 		.error {
 			color: red;
 		}
+		.note-editable{
+			height: 100vh;
+		}
 	</style>
 
 </head>

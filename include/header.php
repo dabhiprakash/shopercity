@@ -135,7 +135,9 @@ if (isset($_POST['search'])) {
                         </li>
                         <?php } else if (!isset($_SESSION['is_active'])) {
                             ?>
+                        <li>
                             <a href="plan.php">Plan</a>
+                        </li>
                         <?php 
                         } ?>
                         <li class="<?php if ($activePage == 'about') {
@@ -151,9 +153,6 @@ if (isset($_POST['search'])) {
                                     echo "active";
                                 } ?>">
                                     <a href="account.php">Account</a>
-                                </li>
-                                <li>
-                                    <a href="user/login.php">Add Resort</a>
                                 </li>
                                 <?php
                             }

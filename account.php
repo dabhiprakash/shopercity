@@ -239,32 +239,37 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 <div class="container">
                     <h2 class="title title-center mb-10">My Account</h2>
                     <div class="tab tab-vertical gutter-lg">
-                        <ul class="nav nav-tabs mb-4 col-lg-3 col-md-4" role="tablist">
-                            <li class="nav-item ">
-                                <a class="nav-link active" href="#dashboard">Dashboard</a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="#account">Profile </a>
-                            </li>
-                            <?php
-                            if ($_SESSION['is_active'] == 1) {
-                                ?>
+                        <div class="flex-col mb-4 col-lg-3 col-md-4">
+                            <ul class="nav nav-tabs mb-4 col-lg-12 col-md-12" role="tablist">
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="#raffer">Raffer And Earn</a>
+                                    <a class="nav-link active" href="#dashboard">withdrawal</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="#account">Profile </a>
                                 </li>
                                 <?php
-                            }
-                            ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#change-pass">Change Password</a>
-                            </li>
-                        </ul>
+                                if ($_SESSION['is_active'] == 1) {
+                                    ?>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="#raffer">Upline</a>
+                                    </li>
+                                    <?php
+                                }
+                                ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#change-pass">Change Password</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="add_your_business" href="javascript:void(0);">Add Your Business</a>
+                                </li>
+                            </ul>
+                        </div>
                         <div class="tab-content col-lg-9 col-md-8">
                             <div class="tab-pane active" id="dashboard">
-                                <h2>Dashboard</h2>
+                                <h2>withdrawal</h2>
                                 <div class="details-section">
                                     <div class="earning">
-                                        <div class="balance-box" style="width: 100%; display: flex; align-items: center; justify-content: center; flex-direction: row;">
+                                        <div class="balance-box account-page row wrap flex-col justify-content-center align-items-center" style="width: 100%;">
                                             <?php
                                                 $user_id = $_SESSION['user_id'];
                                                 $qry1 = "SELECT balance FROM users WHERE id=$user_id";
@@ -274,12 +279,12 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                                 $res3 = mysqli_query($conn, $qry3);
                                                 $row3 = mysqli_fetch_array($res3);
                                             ?>
-                                            <div style="padding: 20px 60px; border: 1px solid; border-radius: 10px; margin: 10px;">
+                                            <div style="padding: 20px 60px; border: 1px solid; border-radius: 10px; margin: 10px;" class="col-md-5 col-lg-5 col-sm-12">
                                                 <h5>Total Ballance</h5>
                                                 <span style="padding:0px 3px;">₹</span>
                                                 <?php echo $row2['balance']; ?>
                                             </div>
-                                            <div style="padding: 20px 60px; border: 1px solid; border-radius: 10px; margin: 10px;">
+                                            <div style="padding: 20px 60px; border: 1px solid; border-radius: 10px; margin: 10px;" class="col-md-5 col-lg-5 col-sm-12">
                                                 <h5>Total Withdrawal</h5>
                                                 <span style="padding:0px 3px;">₹</span>
                                                 <?php echo $row3['total_amount']?$row3['total_amount']:0; ?>
@@ -367,7 +372,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                             if ($_SESSION['is_active'] == 1) {
                                 ?>
                                 <div class="tab-pane" id="raffer">
-                                    <h2>Referral And Earn</h2>
+                                    <h2>Upline</h2>
                                     <div class="col-md-9">
                                         <input type='text'
                                             value='https://shopercity.com/login.php?ref_id=<?php echo $_SESSION['referral_id']; ?>'
@@ -624,6 +629,9 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 }
             });
         });
+        $('#add_your_business').click(function(){
+            window.location.href    =   "user/login.php";
+        })
     </script>
 </body>
 
