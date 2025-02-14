@@ -39,7 +39,7 @@
         $desc_1 = mysqli_real_escape_string($conn, $_POST['desc_1']);
         $desc_2 = mysqli_real_escape_string($conn, $_POST['desc_2']); // assuming desc_2 is in POST data
         $discount_id = mysqli_real_escape_string($conn, $_POST['discount']);
-        $delivery_status = mysqli_real_escape_string($conn, $_POST['delivery'] == 'on' ? 1 : 0);
+        $delivery_status = mysqli_real_escape_string($conn, $_POST['delivery']?$_POST['delivery']:0);
         $created_by = date("Y-m-d"); // You can replace with user or other context
         $modified_by = date("Y-m-d");
         $image = '';  // Placeholder if you don't upload an image
@@ -105,7 +105,7 @@
             $old_image = $row['image'];
     
             // Only remove old files if a new one has been uploaded
-            if (isset($banner)) {
+            if (isset($_FILES['banner'])) {
                 // Remove old banner file if a new one was uploaded
                 if (file_exists("../vendor/banner/$old_banner")) {
                     unlink("../vendor/banner/$old_banner");
@@ -114,7 +114,7 @@
                 $banner_new_name = $old_banner; // Keep old banner
             }
     
-            if (isset($image)) {
+            if (isset($_FILES['image'])) {
                 // Remove old image file if a new one was uploaded
                 if (file_exists("../vendor/profile/$old_image")) {
                     unlink("../vendor/profile/$old_image");
@@ -150,8 +150,8 @@
                 starting_date = '$starting_date',
                 end_date = '$end_date'
                 WHERE user_id = '$user_id'";
-            print_r($update_query);
-            die;
+            // print_r($update_query);
+            // die;
             if (mysqli_query($conn, $update_query)) {
                 echo "Record updated successfully!";
             } else {
