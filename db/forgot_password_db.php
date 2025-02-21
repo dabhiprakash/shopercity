@@ -23,7 +23,7 @@ if(isset($_REQUEST['forgot'])){
             $_SESSION['error_msg'] = 'Something went wrong!';
         }
     }   else {
-        $_SESSION['error_msg'] = 'Wrong Email Or Password';
+        $_SESSION['error_msg'] = 'Wrong Email';
     }
     header("location:../forgot_password.php");
     die;
@@ -35,10 +35,10 @@ function sendPasswordResetEmail($userEmail, $userName, $resetLink) {
     try {
         // SMTP Configuration
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com'; // Replace with your SMTP server (e.g., Gmail, Outlook)
-        $mail->SMTPAuth = true;
-        $mail->Username = 'shopercity_u@shopercity.com'; // Your SMTP email
-        $mail->Password = 'your_email_password'; // Your SMTP password (Use App Password if using Gmail)
+        // $mail->Host = 'smtp.gmail.com'; // Replace with your SMTP server (e.g., Gmail, Outlook)
+        // $mail->SMTPAuth = true;
+        // $mail->Username = 'shopercity_u@shopercity.com'; // Your SMTP email
+        // $mail->Password = '2T@qs690g'; // Your SMTP password (Use App Password if using Gmail)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Use TLS
         $mail->Port = 465; // Port for TLS
 
