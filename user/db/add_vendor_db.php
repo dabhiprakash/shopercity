@@ -57,7 +57,7 @@
             $banner_new_name = uniqid('', true) . "." . $banner_ext;
             $banner_upload_path = "../vendor/banner/" . $banner_new_name;
             if (!move_uploaded_file($banner_tmp_name, $banner_upload_path)) {
-                die("Error uploading banner.");
+                $_SESSION['msg_error']  =   "Error uploading banner.";
             } else {
                 if(isset($_POST['old_banner']) && !empty($_POST['old_banner'])) {
                     unlink('../vendor/banner/'.$_POST['old_banner']);
@@ -75,7 +75,7 @@
             $image_upload_path = "../vendor/profile/" . $image_new_name;
 
             if (!move_uploaded_file($image_tmp_name, $image_upload_path)) {
-                die("Error uploading image.");
+                $_SESSION['msg_error']  =   "Error uploading image.";
             } else {
                 if(isset($_POST['old_image']) && !empty($_POST['old_image'])) {
                     unlink('../vendor/profile/'.$_POST['old_image']);
@@ -119,9 +119,9 @@
             // print_r($update_query);
             // die;
             if (mysqli_query($conn, $update_query)) {
-                echo "Record updated successfully!";
+                $_SESSION['msg_success']    =   "Record updated successfully!";
             } else {
-                echo "Error updating record: " . mysqli_error($conn);
+                $_SESSION['msg_error']    =   "Something went wrong!";
             }
         } else {
             // Construct SQL query to insert data into the database
@@ -130,12 +130,12 @@
     
             // Execute query
             if (mysqli_query($conn, $query)) {
-                echo "Data inserted successfully!";
+                $_SESSION['msg_success']    =   "Data inserted successfully!";
             } else {
-                echo "Error: " . mysqli_error($conn);
+                $_SESSION['msg_error']    =   "Something went wrong!";
             }
         }
-        header("Location:add-vendor.php");
+        header("Location:vendor.php");
     }
     
     

@@ -2,6 +2,6 @@
 if (empty ($_SESSION['user_id'])) {
     header("location:login.php");
 }else {
-    header('location:add-vendor.php'); 
+    header('location:vendor.php'); 
 }
 ?>
