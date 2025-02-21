@@ -1,4 +1,8 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../vendor/autoload.php';
 require_once 'connection.php';
 if(isset($_REQUEST['forgot'])){
     $email  =   $_POST['email'];
@@ -9,6 +13,8 @@ if(isset($_REQUEST['forgot'])){
         $new_password = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789").time(), 0, 10);
         $hashed_password = password_hash($new_password, PASSWORD_BCRYPT);
         $mail   =    sendPasswordResetEmail($fetch_row['email'], $fetch_row['first_name'] .' '. $fetch_row['last_name'], $new_password);
+        print_r($mail);
+        die;
         if($mail == 1) {
             $_SESSION['success_msg'] = 'Paasword link send successfully';
             header("location:../login.php");
@@ -24,46 +30,55 @@ if(isset($_REQUEST['forgot'])){
 }
 
 function sendPasswordResetEmail($userEmail, $userName, $resetLink) {
-    $subject = "Password Reset Request";
+    $mail = new PHPMailer(true);
+    
+    try {
+        // SMTP Configuration
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com'; // Replace with your SMTP server (e.g., Gmail, Outlook)
+        $mail->SMTPAuth = true;
+        $mail->Username = 'shopercity_u@shopercity.com'; // Your SMTP email
+        $mail->Password = 'your_email_password'; // Your SMTP password (Use App Password if using Gmail)
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Use TLS
+        $mail->Port = 465; // Port for TLS
 
-    // Headers for HTML email
-    $headers = "MIME-Version: 1.0" . "\r\n";
-    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    $headers .= "From: no-reply@example.com" . "\r\n";
-    $headers .= "Reply-To: support@example.com" . "\r\n";
+        // Sender & Recipient
+        $mail->setFrom('shopercity_u@shopercity.com', 'Your Website'); // Replace with your email
+        $mail->addAddress($userEmail, $userName);
 
-    // HTML Email Template
-    $message = "
-    <!DOCTYPE html>
-    <html lang='en-US'>
-    <head>
-        <meta charset='UTF-8'>
-        <title>Password Reset Request</title>
-        <style>
-            body { font-family: Arial, sans-serif; background-color: #f2f3f8; margin: 0; }
-            .container { max-width: 600px; margin: 20px auto; background: #fff; padding: 20px; 
-                        text-align: center; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-            h2 { color: #333; }
-            p { font-size: 14px; color: #555; }
-            .button { background: #20e277; color: #fff; padding: 10px 20px; text-decoration: none; 
-                      font-size: 16px; border-radius: 5px; display: inline-block; margin-top: 20px; }
-        </style>
-    </head>
-    <body>
-        <div class='container'>
-            <h2>Hello, $userName</h2>
-            <p>You have requested to reset your password. Your password is</p>
-            <span class='button'>".$resetLink."</span>
-            <p>If you didn't request this, please ignore this email.</p>
-        </div>
-    </body>
-    </html>";
+        // Email Subject
+        $mail->Subject = 'Password Reset Request';
 
-    // Send email
-    if(mail($userEmail, $subject, $message, $headers)){
-        return 1;
-    } else {
-        return 0;
+        // Email Content (HTML)
+        $mail->isHTML(true);
+        $mail->Body = "
+        <html>
+        <head>
+            <style>
+                body { font-family: Arial, sans-serif; background-color: #f2f3f8; margin: 0; }
+                .container { max-width: 600px; margin: 20px auto; background: #fff; padding: 20px; 
+                            text-align: center; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+                h2 { color: #333; }
+                p { font-size: 14px; color: #555; }
+                .button { background: #20e277; color: #fff; padding: 10px 20px; text-decoration: none; 
+                          font-size: 16px; border-radius: 5px; display: inline-block; margin-top: 20px; }
+            </style>
+        </head>
+        <body>
+            <div class='container'>
+                <h2>Hello, $userName</h2>
+                <p>You have requested to reset your password. Click the button below to proceed.</p>
+                <a href='$resetLink' class='button'>Reset Password</a>
+                <p>If you didn't request this, please ignore this email.</p>
+            </div>
+        </body>
+        </html>";
+
+        // Send Email
+        $mail->send();
+        return "Password reset email sent successfully!";
+    } catch (Exception $e) {
+        return "Email could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 }
 ?>
