@@ -251,16 +251,13 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                 if ($_SESSION['is_active'] == 1) {
                                     ?>
                                     <li class="nav-item ">
-                                        <a class="nav-link" href="#raffer">Upline</a>
+                                        <a class="nav-link" href="#raffer">Raffer And Earn</a>
                                     </li>
                                     <?php
                                 }
                                 ?>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#change-pass">Change Password</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="add_your_business" href="javascript:void(0);">Add Your Business</a>
                                 </li>
                             </ul>
                         </div>
@@ -278,6 +275,8 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                                 $qry3 = "SELECT SUM(amount) as total_amount FROM withdrawals WHERE user_id=$user_id AND status = 1";
                                                 $res3 = mysqli_query($conn, $qry3);
                                                 $row3 = mysqli_fetch_array($res3);
+                                                $qry = "SELECT first_name,last_name,email,mobile,created_at FROM users WHERE upline_id=$user_id";
+                                                $res = mysqli_query($conn, $qry);
                                             ?>
                                             <div style="padding: 20px 60px; border: 1px solid; border-radius: 10px; margin: 10px;" class="col-md-5 col-lg-5 col-sm-12">
                                                 <h5>Total Ballance</h5>
@@ -288,6 +287,11 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                                 <h5>Total Withdrawal</h5>
                                                 <span style="padding:0px 3px;">₹</span>
                                                 <?php echo $row3['total_amount']?$row3['total_amount']:0; ?>
+                                            </div>
+                                            <div style="padding: 20px 60px; border: 1px solid; border-radius: 10px; margin: 10px;" class="col-md-5 col-lg-5 col-sm-12">
+                                                <h5>Shared User</h5>
+                                                <span style="padding:0px 3px;">₹</span>
+                                                <?php echo mysqli_num_rows($res); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -372,7 +376,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                             if ($_SESSION['is_active'] == 1) {
                                 ?>
                                 <div class="tab-pane" id="raffer">
-                                    <h2>Upline</h2>
+                                    <h2>Raffer And Earn</h2>
                                     <div class="col-md-9">
                                         <input type='text'
                                             value='https://shopercity.com/login.php?ref_id=<?php echo $_SESSION['referral_id']; ?>'
@@ -384,12 +388,10 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                             $res = mysqli_query($conn, $qry);
                                             if (mysqli_num_rows($res) > 0) {
                                             ?>
-                                        <table class="rwd-table mt-10">
+                                        <!-- <table class="rwd-table mt-10">
                                             <tbody>
                                                 <tr>
                                                     <th>Name</th>
-                                                    <th>Email</th>
-                                                    <th>Mobille Number</th>
                                                     <th>Date</th>
                                                 </tr>
                                                <?php 
@@ -401,15 +403,13 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                                         $count++;
                                                         echo "<tr>";
                                                         echo "<td data-th='Name'>".$row['first_name'] .' '. $row['first_name']."</td>";
-                                                        echo "<td data-th='Email'>".$row['email'] . "</td>";
-                                                        echo "<td data-th='Mobile Number'>".$row['mobile'] . "</td>";
                                                         echo "<td data-th='Date'>" . $formattedDate."</td>";
                                                         echo "</tr>";
                                                     }
                                                ?>
                                             </tbody>
                                         </table>
-                                        <?php } ?>
+                                        <?php } ?> -->
                                     </div>
                                 </div>
                                 <?php

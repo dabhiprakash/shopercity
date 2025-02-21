@@ -90,7 +90,7 @@ if (isset($_POST['search'])) {
                 </div>
 
             </div>
-            <div class="header-right">
+            <div class="header-right main-contact-now-icon">
                 <a href="tel:919265744500" class="icon-box icon-box-side">
                     <div class="icon-box-icon mr-0 mr-lg-2">
                         <i class="d-icon-phone"></i>

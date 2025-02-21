@@ -71,16 +71,31 @@ if(isset($_GET['delete_id'])){
                                     Name
                                 </th>
                                 <th style="width: 5%">
-                                    email
+                                    Email
                                 </th>
                                 <th style="width: 20%">
-                                    mobile
+                                    Mobile
                                 </th>
                                 <th style="width: 20%">
-                                    address
+                                    Address
+                                </th>
+                                <th style="width: 100px">
+                                    Vendor
                                 </th>
                                 <th style="width: 20%">
-                                    date
+                                    Vendor detail
+                                </th>
+                                <th style="width: 20%">
+                                    Category Name
+                                </th>
+                                <th style="width: 20%">
+                                    vendor date
+                                    <th style="width: 20%">
+                                        User created  date
+                                    </th>
+                                </th>
+                                <th style="width: 20%">
+                                    Edit Vendor
                                 </th>
                                 <?php
                                     if(isset($_SESSION['type']) && $_SESSION['type'] == 0){
@@ -90,7 +105,8 @@ if(isset($_GET['delete_id'])){
                                         </th>
                                 <?php
                                     }
-                                ?>
+                                    ?>
+                                    
                                 <th style="width: 20%">
                                     Action
                                 </th>
@@ -103,7 +119,16 @@ if(isset($_GET['delete_id'])){
               if(isset($_GET['type'])){
                 $type = 1;
               }
-              $center = $conn->query("SELECT * FROM users WHERE is_active=$type");
+              
+            $center = $conn->query("SELECT users.id, users.first_name, users.last_name, users.email, users.mobile, 
+                               users.address, users.city, users.state, users.country, 
+                               vendor.store_name, vendor.name, vendor.id as vendor_id, category.name AS category_name, 
+                               users.created_at, users.status, vendor.starting_date, vendor.end_date
+                        FROM users
+                        LEFT JOIN vendor ON users.id = vendor.user_id
+                        LEFT JOIN category ON vendor.category_id = category.id
+                        WHERE users.is_active = $type");
+
               while ($row = $center->fetch()) {
                 $i++;
                 ?>
@@ -124,7 +149,34 @@ if(isset($_GET['delete_id'])){
                                     <?= $row['address'] . ' ' . $row['city'] . ' ' . $row['state'] . ' ' . $row['country']; ?>
                                 </td>
                                 <td>
+                                    <span class="bg-<?php if(!empty($row['vendor_id'])) { echo "success";}else {echo "danger"; } ?> border px-3 py-1 text-center" style="border-radius: 50px;"> <?php if(!empty($row['vendor_id'])) { echo "Yes";}else {echo "No"; } ?> </span>
+                                </td>
+                                <td>
+                                    <?php if(!empty($row['vendor_id'])) { $row['store_name'].' ('.$row['name'].')'; }?>
+                                </td>
+                                <td>
+                                    <?= $row['category_name'];?>
+                                </td>
+                                <td>
+                                <small>
+                                    <b>Open:</b> <?php echo $row['starting_date']; ?>
+                                    <b>Expire:</b> <?php echo $row['end_date']; ?>
+                                </small>
+                                </td>
+                                <td>
                                     <?= $row['created_at']; ?>
+                                </td>
+                                <td>
+                                    <?php 
+                                        if(!empty($row['vendor_id'])) {
+                                    ?>
+                                    <a href="add-vendor.php?id=<?= $row['vendor_id']; ?>" class="btn btn-primary">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                            </svg>
+                                        </a>
+                                    <?php } ?>
                                 </td>
                                 <?php 
                                     if(isset($_SESSION['type']) && $_SESSION['type'] == 0){
@@ -159,6 +211,7 @@ if(isset($_GET['delete_id'])){
                                     }else{
                                         ?>
                                         <td>
+                                        
                                         <a href="user.php?delete_id=<?= $row['id']; ?>" class="btn btn-danger">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -169,6 +222,7 @@ if(isset($_GET['delete_id'])){
                                         <?php
                                     }
                                 ?>
+                                
                             </tr>
                             <?php
               }
@@ -186,12 +240,7 @@ if(isset($_GET['delete_id'])){
     </div>
     <!-- /.content-wrapper -->
 
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.1.0-pre
-        </div>
-        <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
+    <?php require_once('footer.php'); ?>
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">

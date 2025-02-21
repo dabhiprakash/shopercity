@@ -81,77 +81,16 @@
                     </div>
                 </section>
 
-                <!-- <section class="store-section mt-6 pt-10 pb-8">
+                <section class="store-section mt-6 pt-10 pb-8">
                     <div class="container">
-                        <h2 class="title title-center mb-7 text-normal">Our store</h2>
-                        <div class="row cols-sm-2 cols-lg-4">
-                            <div class="store">
-                                <figure class="banner-radius">
-                                    <img src="images/subpages/store-1.jpg" alt="store" width="280" height="280">
-                                    <h4 class="overlay-visible">New York</h4>
-                                    <div class="overlay overlay-transparent">
-                                        <a class="mt-8" href="mail:#"><span class="__cf_email__"
-                                                data-cfemail="224f434b4e624c47555b4d5049504b4d464751564d50470c414d4f">shopercity2020@gmail.com</span></a>
-                                        <a href="tel:#">Phone: +919909503062</a>
-                                        <div class="social-links mt-1">
-                                            <a href="#" class="social-link social-facebook fab fa-facebook-f"></a>
-                                            <a href="#" class="social-link social-twitter fab fa-twitter"></a>
-                                            <a href="#" class="social-link social-linkedin fab fa-linkedin-in"></a>
-                                        </div>
-                                    </div>
-                                </figure>
-                            </div>
-                            <div class="store">
-                                <figure class="banner-radius">
-                                    <img src="images/subpages/store-2.jpg" alt="store" width="280" height="280">
-                                    <h4 class="overlay-visible">London</h4>
-                                    <div class="overlay overlay-transparent">
-                                        <a class="mt-8" href="mail:#"><span class="__cf_email__"
-                                                data-cfemail="4b262a22270b2724252f24253922242f2e383f24392e65282426">[email&#160;protected]</span></a>
-                                        <a href="tel:#">Phone: (123) 456-7890</a>
-                                        <div class="social-links mt-1">
-                                            <a href="#" class="social-link social-facebook fab fa-facebook-f"></a>
-                                            <a href="#" class="social-link social-twitter fab fa-twitter"></a>
-                                            <a href="#" class="social-link social-linkedin fab fa-linkedin-in"></a>
-                                        </div>
-                                    </div>
-                                </figure>
-                            </div>
-                            <div class="store">
-                                <figure class="banner-radius">
-                                    <img src="images/subpages/store-3.jpg" alt="store" width="280" height="280">
-                                    <h4 class="overlay-visible">Oslo</h4>
-                                    <div class="overlay overlay-transparent">
-                                        <a class="mt-8" href="mail:#"><span class="__cf_email__"
-                                                data-cfemail="680509010428071b04071a01070c0d1b1c071a0d460b0705">[email&#160;protected]</span></a>
-                                        <a href="tel:#">Phone: (123) 456-7890</a>
-                                        <div class="social-links mt-1">
-                                            <a href="#" class="social-link social-facebook fab fa-facebook-f"></a>
-                                            <a href="#" class="social-link social-twitter fab fa-twitter"></a>
-                                            <a href="#" class="social-link social-linkedin fab fa-linkedin-in"></a>
-                                        </div>
-                                    </div>
-                                </figure>
-                            </div>
-                            <div class="store">
-                                <figure class="banner-radius">
-                                    <img src="images/subpages/store-4.jpg" alt="store" width="280" height="280">
-                                    <h4 class="overlay-visible">Stockholm</h4>
-                                    <div class="overlay overlay-transparent">
-                                        <a class="mt-8" href="mail:#"><span class="__cf_email__"
-                                                data-cfemail="2b464a42476b585f444840434447465942444f4e585f44594e05484446">[email&#160;protected]</span></a>
-                                        <a href="tel:#">Phone: (123) 456-7890</a>
-                                        <div class="social-links mt-1">
-                                            <a href="#" class="social-link social-facebook fab fa-facebook-f"></a>
-                                            <a href="#" class="social-link social-twitter fab fa-twitter"></a>
-                                            <a href="#" class="social-link social-linkedin fab fa-linkedin-in"></a>
-                                        </div>
-                                    </div>
-                                </figure>
+                        <h2 class="title title-center mb-7 text-normal">Add your business</h2>
+                        <div class="row justify-content-center align-items-center">
+                            <div class="w-25 d-flex justify-content-center">
+                                <a href="user/index.php" class="btn btn-success text-center w-25">Add Now</a>
                             </div>
                         </div>
                     </div>
-                </section> -->
+                </section>
 
 
                 <!-- <div class="grey-section google-map" id="googlemaps" style="height: 386px"></div> -->

@@ -39,7 +39,7 @@
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="signin">
-                                            <form action="db/login_db.php" method="post">
+                                            <form action="db/login_db.php" >
                                                 <div class="form-group mb-3">
                                                     <input type="text" class="form-control" id="singin-email" name="email" placeholder="Email Address *" required />
                                                 </div>

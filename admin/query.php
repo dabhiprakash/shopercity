@@ -13,7 +13,7 @@ if(isset($_POST['signin']) && $_POST['signin'] == 'SignIn')
 	}
 	else
 	{
-		$_SESSION['err_login'] = 'Invalid Username Password';
+		$_SESSION['err'] = 'Invalid Username Password';
 		$user->redirect('login.php');	
 	}
 	
@@ -464,7 +464,9 @@ if(isset($_POST['vendor']) && $_POST['vendor'] == 'Save')
   	$tmp_dir1 = $_FILES['banner']['tmp_name'];
   	$imgSize1 = $_FILES['banner']['size'];
 	$name=$_POST['name'];
-	$insert_query = $conn->prepare("INSERT INTO vendor (name, created_by, country_id, state_id, city_id, contact, zipcode, store_name, email, username, password, street, lat, longitude, plan_id, category_id, youtube_link, desc_1, desc_2, delivery_status,discount_id,starting_date,end_date) VALUES (:name, :created_by, :country_id, :state_id, :city_id, :contact, :zipcode, :store_name, :email, :username, :password, :street, :lat, :longitude, :plan_id, :category_id, :youtube_link, :desc_1, :desc_2, :delivery_status, :discount_id,:starting_date,:end_date)");
+	$status	=$_POST['status'];
+	$reason	=	$_POST['reason'];
+	$insert_query = $conn->prepare("INSERT INTO vendor (name, created_by, country_id, state_id, city_id, contact, zipcode, store_name, email, username, password, street, lat, longitude, plan_id, category_id, youtube_link, desc_1, desc_2, delivery_status,discount_id,starting_date,end_date,status, reason) VALUES (:name, :created_by, :country_id, :state_id, :city_id, :contact, :zipcode, :store_name, :email, :username, :password, :street, :lat, :longitude, :plan_id, :category_id, :youtube_link, :desc_1, :desc_2, :delivery_status, :discount_id,:starting_date,:end_date,:status, :reason)");
 
 	$insert_record = $insert_query->execute(array(
 		':name' => $name,
@@ -488,8 +490,10 @@ if(isset($_POST['vendor']) && $_POST['vendor'] == 'Save')
 		':desc_2' => "$desc_2",
 		':delivery_status' => $delivery_status,
 		':discount_id'=>$discount_id?$discount_id:1,
-		'starting_date' => $starting_date,
-		'end_date' => $end_date,
+		':starting_date' => $starting_date,
+		':end_date' => $end_date,
+		':status'=>$status, 
+		':reason'=>$reason
 	));
 
 	$insert_id=$conn->lastInsertId();
@@ -565,7 +569,7 @@ if(isset($_POST['vendor']) && $_POST['vendor'] == 'Save')
 	}
 	if($insert_record){
 		$_SESSION['ins_msg'] = 'vendor added successfully';
-		header('location:vendor.php');
+		header('location:user.php');
 	}
 }
 if(isset($_POST['vendor']) && $_POST['vendor'] == 'Update')
@@ -599,10 +603,11 @@ if(isset($_POST['vendor']) && $_POST['vendor'] == 'Update')
   	$imgSize1 = $_FILES['banner']['size'];
 	$old_image=$_POST['old_img'];
 	$old_banner=$_POST['old_banner'];
-	
+	$status	=$_POST['status'];
+	$reason	=	$_POST['reason'];
 	$name=$_POST['name'];
 	//$update_query=$conn->prepare("UPDATE vendor SET name=:name,country_id=:country_id,state_id=:state_id,city_id=:city_id,contact=:contact,zipcode=:zipcode,store_name=:store_name,email=:email,username=:username,password=:password,street=:street,lat=:lat,longitude=:longitude,plan_id=:plan_id,modified_by=:modified_by,category_id=:category_id,youtube_link=:youtube_link,desc_1:desc_1,desc_2:desc_2,delivery_status:delivery_status WHERE id=:id");
-	$update_query=$conn->prepare("UPDATE vendor SET name=:name,country_id=:country_id,state_id=:state_id,city_id=:city_id,contact=:contact,zipcode=:zipcode,store_name=:store_name,email=:email,username=:username,password=:password,street=:street,lat=:lat,longitude=:longitude,plan_id=:plan_id,modified_by=:modified_by,category_id=:category_id,youtube_link=:youtube_link,desc_1=:desc_1,desc_2=:desc_2,delivery_status=:delivery_status,discount_id=:discount_id, starting_date=:starting_date,end_date=:end_date WHERE id=:id");
+	$update_query=$conn->prepare("UPDATE vendor SET name=:name,country_id=:country_id,state_id=:state_id,city_id=:city_id,contact=:contact,zipcode=:zipcode,store_name=:store_name,email=:email,username=:username,password=:password,street=:street,lat=:lat,longitude=:longitude,plan_id=:plan_id,modified_by=:modified_by,category_id=:category_id,youtube_link=:youtube_link,desc_1=:desc_1,desc_2=:desc_2,delivery_status=:delivery_status,discount_id=:discount_id, starting_date=:starting_date,end_date=:end_date,status=:status,reason=:reason WHERE id=:id");
 	$update_record=$update_query->execute( array(
 								':name'=>$name,
 								':id'=> $_POST['id'],
@@ -628,6 +633,8 @@ if(isset($_POST['vendor']) && $_POST['vendor'] == 'Update')
 								':discount_id'=>$discount_id,
 								'starting_date' => $starting_date,
 								'end_date' => $end_date,
+								'status' => $status,
+								'reason' => $reason,
 								));
 	$insert_id=$_POST['id'];
 	$month=$user->getField($plan_id,'subscription','month');
@@ -640,8 +647,7 @@ if(isset($_POST['vendor']) && $_POST['vendor'] == 'Update')
 								));
 	/* Product City Change */
 	$update_query=$conn->prepare("UPDATE vendor_subscribe SET plan_id=:plan_id,start_date=:start_date,end_date=:end_date  WHERE user_id=:user_id");
-	$update_record=$update_query->execute( array(
-							
+	$update_record=$update_query->execute( array(							
 								':user_id'=>$insert_id ,
 								':plan_id'=>$plan_id ,
 								':start_date'=>date("Y-m-d H:i:s") ,
@@ -720,7 +726,7 @@ if(isset($_POST['vendor']) && $_POST['vendor'] == 'Update')
 	if($update_record)
 	{
 		$_SESSION['ins_msg'] = 'vendor updated successfully';
-		header('location:vendor.php');
+		header('location:user.php');
 	}
 }
 if(isset($_GET['name']) && $_GET['name'] =='vendor' and $_GET['id'] != '')
@@ -734,7 +740,7 @@ if(isset($_GET['name']) && $_GET['name'] =='vendor' and $_GET['id'] != '')
 	if($update_record)
 	{
 		$_SESSION['ins_msg'] = 'vendor Delete successfully';
-		header('location:vendor.php');
+		header('location:user.php');
 	}
 }
 

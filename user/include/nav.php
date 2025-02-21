@@ -26,7 +26,7 @@
                         <!-- <h6 class="fl-title title-font ps-2 small text-uppercase text-muted" style="--dynamic-color: var(--theme-color1)">Usual</h6> -->
                         <ul class="list-unstyled mb-4 menu-list">
                             <li>
-                                <a href="add-restaurants.php" aria-label="HRMS Dashboard">
+                                <a href="add-vendor.php" aria-label="HRMS Dashboard">
                                     <svg class="svg-stroke" xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                         <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>

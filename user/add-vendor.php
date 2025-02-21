@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Add User Resort</title>
+    <title>Add Vendor</title>
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,7 +27,7 @@
 			color: red;
 		}
 		.note-editable{
-			height: 100vh;
+			min-height: 60vh;
 		}
 	</style>
 
@@ -38,7 +38,7 @@
 		<!-- start: page menu link -->
 		<?php 
 			require_once('include/nav.php');
-			require_once('db/add_restaurants_db.php');
+			require_once('db/add_vendor_db.php');
 		?>
 		<div class="content">
 			<!-- start: page header -->
@@ -46,57 +46,41 @@
 			<!-- start: page header area -->
 			<div class="px-xl-5 px-lg-4 px-3 py-2 page-header">
 				<ol class="breadcrumb mb-0 bg-transparent">
-					<li class="breadcrumb-item"><a href="index.php" title="home">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page" title="Add Resort">Add Resort</li>
+					<li class="breadcrumb-item"><a href="index.php">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page" >Add Vendor</li>
 				</ol>
 			</div>
 			<!-- start: page body area -->
 			<div class="px-xl-5 px-lg-4 px-3 py-3 page-body">
 
-				<h3 class="fw-bold">Add Employees</h3>
+				<h3 class="fw-bold">Add Vendor</h3>
 				<div class="card p-4">
 					<form class="row g-3" method="post" action="" enctype='multipart/form-data' id="add_vendor">
+						<input type="hidden" name="old_banner" value="<?php if(!empty($vendor_row['banner'])) {echo $vendor_row['banner'];} ?>">
+						<input type="hidden" name="old_image" value="<?php if(!empty($vendor_row['image'])) {echo $vendor_row['image'];} ?>">
 						<div class="col-lg-6 col-12">
-							<label class="form-label text-muted">Enter Vendor Name</label>
+							<label class="form-label text-muted">Owner Name</label>
 							<input type="text" name="v_name" class="form-control form-control-lg" placeholder="" value="<?php if(!empty($vendor_row['name'])){echo $vendor_row['name']; } ?>">
 						</div>
 						<div class="col-lg-6 col-12">
-							<label class="form-label text-muted">Enter Store Name</label>
+							<label class="form-label text-muted">Business Name</label>
 							<input type="text" name="store_name" class="form-control form-control-lg" placeholder="" value="<?php if(!empty($vendor_row['store_name'])){echo $vendor_row['store_name']; } ?>">
 						</div>
 						<div class="col-xl-3 col-lg-4 col-md-6">
-							<label class="form-label text-muted">Subscription Plan</label>
-							<select class="form-select form-control-lg" name="plan">
-								<option value="1">Select plan</option>
-								<?php 
-									while($row   =   mysqli_fetch_assoc($subscription)){
-								?>
-									<option value="<?php echo $row['id']; ?>" <?php if(!empty($vendor_row['plan_id']) && $vendor_row['plan_id'] == $row['id']) {echo "selected";  }?>><?php echo $row['name']; ?></option>
-								<?php } ?>
-							</select>
-						</div>
-						<div class="col-xl-3 col-lg-4 col-md-6">
-							<label class="form-label text-muted">Enter Email Address</label>
+							<label class="form-label text-muted">Email Address</label>
 							<input type="text" class="form-control form-control-lg" name="email" placeholder="" value="<?php if(!empty($vendor_row['email'])){echo$vendor_row['email'];} ?>">
 						</div>
 						<div class="col-xl-3 col-lg-4 col-md-6">
-							<label class="form-label text-muted">Street</label>
+							<label class="form-label text-muted">Address</label>
 							<input type="text" class="form-control form-control-lg" name="street" value="<?php if(!empty($vendor_row['street'])){echo$vendor_row['street'];} ?>">
 						</div>
 						<div class="col-xl-3 col-lg-6 col-sm-6">
 							<label  class="form-label text-muted">City</label>
-							<select class="form-select form-control-lg" name="city">
-								<?php 
-									while($row   =   mysqli_fetch_assoc($city)){
-								?>
-									<option value="<?php echo $row['id']; ?>" <?php if(!empty($vendor_row['city_id']) && $row['id']	==  $vendor_row['city_id']){echo"selected";} ?>><?php echo $row['name'];?></option>
-								<?php
-									}
-								?>
-							</select>
+							<input type="text" class="form-control form-control-lg" name="city" value="<?php if(!empty($vendor_row['city'])){echo$vendor_row['city'];} ?>">
 						</div>
 						<div class="col-xl-3 col-lg-4 col-md-6">
-							<label class="form-label text-muted">State</label>
+							<label class="form-label text-muted">Sta
+								te</label>
 							<select class="form-select form-control-lg" name="state">
 							<?php 
 									while($row   =   mysqli_fetch_assoc($state)){
@@ -127,16 +111,8 @@
 							<label class="form-label text-muted">Contact</label>
 							<input type="number" class="form-control form-control-lg" placeholder="" name="contact" value="<?php if(!empty($vendor_row['contact'])){echo $vendor_row['contact'];} ?>">
 						</div>
-						<div class="col-xl-3 col-lg-4 col-md-6">
-							<label class="form-label text-muted">Enter Latitude</label>
-							<input type="number" class="form-control form-control-lg" placeholder="" name="lat" value="<?php if(!empty($vendor_row['lat'])){echo $vendor_row['lat'];} ?>">
-						</div>
-						<div class="col-xl-3 col-lg-4 col-md-6">
-							<label class="form-label text-muted">Enter Latitude</label>
-							<input type="number" class="form-control form-control-lg" placeholder="" name="log" value="<?php if(!empty($vendor_row['longitude'])){echo $vendor_row['longitude'];} ?>">
-						</div>
 						<div class="col-xl-3 col-lg-6 col-sm-6">
-							<label  class="form-label text-muted">Category</label>
+							<label  class="form-label text-muted">Category Name</label>
 							<select class="form-select form-control-lg" name="category">
 								<?php 
 									while($row   =   mysqli_fetch_assoc($category)){
@@ -160,10 +136,6 @@
 							</select>
 						</div>
 						<div class="col-xl-3 col-lg-4 col-md-6">
-							<label class="form-label text-muted">Social Media Link</label>
-							<input type="text" class="form-control form-control-lg" name="link" placeholder="" value="<?php  if(!empty($vendor_row['youtube_link'])){echo $vendor_row['youtube_link'];} ?>">
-						</div>
-						<div class="col-xl-3 col-lg-4 col-md-6">
 							<label class="form-label text-muted">Delivery</label>
 							<div class="row">
 								<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -176,31 +148,31 @@
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-4 col-md-6">
-							<label class="form-label text-muted">Starting Date</label>
+							<label class="form-label text-muted">Start Date</label>
 							<input type="date" class="form-control form-control-lg" name="s_date" value="<?php if(!empty($vendor_row['starting_date'])){echo $vendor_row['starting_date'];} ?>" placeholder="">
 						</div>
 						<div class="col-xl-3 col-lg-4 col-md-6">
-							<label class="form-label text-muted">Ending Date</label>
+							<label class="form-label text-muted">End Date</label>
 							<input type="date" class="form-control form-control-lg" name="e_date" placeholder="" value="<?php if(!empty($vendor_row['end_date'])){echo $vendor_row['end_date'];} ?>">
 						</div>
 						<div class="col-12 row">
 							<div class="col-12 col-md-12 col-lg-6">
-								<label class="col-form-label">Discount Description</label>
+								<label class="col-form-label">Product Description</label>
 								<textarea class="summernote" name="desc_1"><?php if(!empty($vendor_row['desc_1'])){echo $vendor_row['desc_1'];} ?></textarea>
 							</div>
 							<div class="col-12 col-md-12 col-lg-6">
-								<label class="col-form-label">Product Description</label>
+								<label class="col-form-label">Service Description</label>
 								<textarea class="summernote" name="desc_2"><?php if(!empty($vendor_row['desc_2'])){echo $vendor_row['desc_2'];} ?></textarea>
 							</div>
 						</div>
 						<div class="col-lg-6 col-12">
-							<label class="form-label text-muted">Upload Banner </label>
+							<label class="form-label text-muted">Business Baner Upload </label>
 							<div class="form-group">
 								<input type="file" name="banner" class="form-control" placeholder="">
 							</div>
 						</div>
 						<div class="col-lg-6 col-12">
-							<label class="form-label text-muted">Upload Image</label>
+							<label class="form-label text-muted">Business profile upload</label>
 							<div class="form-group">
 								<input type="file" name="image" class="form-control" placeholder="">
 							</div>

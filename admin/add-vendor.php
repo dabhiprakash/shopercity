@@ -26,6 +26,8 @@ if(isset($_GET['id']) && $_GET['id'] != '')
 	$discount_id = $user->getField($_GET['id'],'vendor','discount_id');
 	$s_date = $user->getField($_GET['id'],'vendor','starting_date');
 	$e_date = $user->getField($_GET['id'], 'vendor', 'end_date');
+	$status = $user->getField($_GET['id'], 'vendor', 'status');
+	$reason = $user->getField($_GET['id'], 'vendor', 'reason');
 	$date = '2024-10-31'; // Original date
 
 	// Create a DateTime object
@@ -66,6 +68,8 @@ else
 	$discount_id = "";
 	$starting_date = date('Y-m-d');
 	$end_date = date('Y-m-d');
+	$status = 2;
+	$reason	=	"";
 }
 ?>
 <!DOCTYPE html>
@@ -154,11 +158,11 @@ else
 					 </div>
 					 <div class="form-group col-md-6">
 						<label for="exampleInputEmail1">Enter Username</label>
-						<input required="" data-parsley-trigger="change" type="text" class="form-control" name="username" placeholder="" value="<?php echo $v_username; ?>">
+						<input  data-parsley-trigger="change" type="text" class="form-control" name="username" placeholder="" value="<?php echo $v_username; ?>">
 					 </div>
 					 <div class="form-group col-md-6">
 						<label for="exampleInputEmail1">Enter Password</label>
-						<input required="" data-parsley-trigger="change" type="password" class="form-control" name="password" placeholder="" value="<?php echo $v_password; ?>">
+						<input  data-parsley-trigger="change" type="password" class="form-control" name="password" placeholder="" value="<?php echo $v_password; ?>">
 					 </div>
 					 <div class="form-group col-md-6">
 						<label for="exampleInputEmail1">Street</label>
@@ -166,15 +170,7 @@ else
 					 </div>
 					 <div class="form-group col-md-6">
 						<label for="inputStatus">City</label>
-						<select required="" data-parsley-trigger="change" id="inputStatus" name="city_id" class="form-control custom-select">
-						  <option value=""> Select City</option>
-						  <?php 
-							$center = $conn->query("SELECT * FROM city");
-							while($center_fetch=$center->fetch())
-							{ ?>
-								<option <?php if($city==$center_fetch['id']) { echo 'selected="selected"';}?> value="<?php echo $center_fetch['id'];?>"><?php echo $center_fetch['name'];?></option>
-							<?php } ?>
-						</select>
+						<input type="text" name="city_id" id="" value="<?= $city; ?>" required="" data-parsley-trigger="change" type="text" class="form-control">
 					  </div>		  
 					  <div class="form-group col-md-6">
 						<label for="inputStatus">State</label>
@@ -278,7 +274,7 @@ else
 						</div>
 					<div class="form-group col-md-6">
 						<label for="exampleInputEmail1">Youtube Link</label>
-						<input required="" data-parsley-trigger="change" type="text" class="form-control" name="youtube_link" placeholder="Enter store Name" value="<?php echo $youtube_link; ?>">
+						<input  data-parsley-trigger="change" type="text" class="form-control" name="youtube_link" placeholder="Enter store Name" value="<?php echo $youtube_link; ?>">
 					 </div>
 					 <div class="form-group col-md-6">
 						<label for="exampleInputEmail1">Delivery</label>
@@ -305,7 +301,20 @@ else
 						<label for="exampleInputEmail1">Ending Date</label>
 						<input required="" data-parsley-trigger="change" type="date" class="form-control" name="end_date"
 							value="<?= $end_date ?>">
-					</div> 
+					</div>
+					<div class="from-group col-md-12">
+						<label for="exampleInputEmail1">Vendor Status</label>
+						<select name="status" id="" class="form-control custom-select">
+							<option value="0" <?php if(isset($status) && $status ==	"0") {echo "selected";} ?>>Pending</option>
+							<option value="1" <?php if(isset($status) && $status ==	"1") {echo "selected";} ?>>Reject</option>
+							<option value="2" <?php if(isset($status) && $status ==	"2") {echo "selected";} ?>>Approve</option>
+							<option value="3" <?php if(isset($status) && $status ==	"3") {echo "selected";} ?>>Delete</option>
+						</select>
+					</div>
+					<div class="form-group col-md-12">
+						<label for="exampleInputEmail1">Reason</label>
+						<textarea required="" data-parsley-trigger="change" class="form-control" name="reason"><?= $reason ?></textarea>
+					</div>
 					 <div class="form-group col-md-6">
 						<label for="exampleInputFile">Upload Banner</label><br>
 						<div class="input-group">
@@ -317,7 +326,7 @@ else
 						<?php 
 						if($image != '')
 						{
-							echo '<br><img src="'.URL.'vendor/profile/'.$image.'" width="100">';
+							echo '<br><img src="../vendor/profile/'.$image.'" class="w-25">';
 							echo '<input required="" data-parsley-trigger="change" type="hidden" name="old_img" value="'.$image.'" >';
 						}
 						?>
@@ -333,7 +342,7 @@ else
 						<?php 
 						if($banner != '')
 						{
-							echo '<br><img src="../vendor/banner/'.$banner.'" height="100">';
+							echo '<br><img src="../vendor/banner/'.$banner.'" class="w-25">';
 							echo '<input required="" data-parsley-trigger="change" type="hidden" name="old_banner" value="'.$banner.'" >';
 						}
 						?>
@@ -361,12 +370,7 @@ else
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0-pre
-    </div>
-    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
+  <?php require_once('footer.php'); ?>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

@@ -135,7 +135,7 @@
                                 <?php
                                 if (isset($_GET["cat_id"])) {
                                     $get_catId = $_GET["cat_id"];
-                                    $qry = "SELECT id, store_name, city_id, image, discount_id FROM vendor WHERE `category_id` = $get_catId";
+                                    $qry = "SELECT id, store_name, city_id, image, discount_id, street FROM vendor WHERE `category_id` = $get_catId";
                                     $res = mysqli_query($conn, $qry);
                                     // while ($row = mysqli_fetch_assoc($res)) {
                                     //     print_r($row);
@@ -178,18 +178,7 @@
                                                                 </a>
                                                             </h3>
                                                         </div>
-                                                        <h3 class="product-name">
-                                                            <a href="single-product.php?shop_id=<?php echo $row['id']; ?>">
-                                                                <?php
-                                                                // $qry = "SELECT name FROM city WHERE id =" . $row['city_id'] . "";
-                                                                // $res = mysqli_query($conn, $qry);
-                                                                // if(mysqli_fetch_array($res)){
-                                                                // $city = mysqli_fetch_array($res);
-                                                                //     echo $city['name'];
-                                                                // }
-                                                                ?>
-                                                            </a>
-                                                        </h3>
+                                                        
                                                         <h3 class="product-name">
                                                             <a href="single-product.php?shop_id=<?php echo $row['id']; ?>">
                                                                 <?php
@@ -197,6 +186,14 @@
                                                                 $res2 = mysqli_query($conn, $qry2);
                                                                 $discount = mysqli_fetch_array($res2);
                                                                 echo $discount['name'];
+                                                                ?>
+                                                            </a>
+                                                        </h3>
+
+                                                        <h3 class="product-name">
+                                                            <a href="single-product.php?shop_id=<?php echo $row['id']; ?>">
+                                                                <?php
+                                                                     echo $row['street'].' '. $row['city_id'];
                                                                 ?>
                                                             </a>
                                                         </h3>

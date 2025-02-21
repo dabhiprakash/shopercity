@@ -2,7 +2,7 @@
     require_once('db/login_db.php');
 	if (isset ($_SESSION)) {
 		if (!empty ($_SESSION['user_id'])) {
-			header("location:add-restaurants.php");
+			header("location:add-vendor.php");
 		}
 	}
 ?>

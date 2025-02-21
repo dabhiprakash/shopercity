@@ -13,6 +13,19 @@
     <link rel="stylesheet" type="text/css" href="vendor/owl-carousel/owl.carousel.min.css">
     <link rel="stylesheet" type="text/css" href="css/demo1.min.css">
 </head>
+    <style>
+        .main-contact-now-icon{
+            display:none;
+        }
+        header .header-left .logo{
+            margin:0px;
+        }
+        header .header-left{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    </style>
 
 <body class="home">
     <div class="page-wrapper">

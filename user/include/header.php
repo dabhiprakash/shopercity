@@ -8,7 +8,7 @@
 							<svg xmlns="http://www.w3.org/2000/svg" class="svg-stroke" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 21a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3" /><path d="M21 6v12a3 3 0 0 1 -6 0v-12a3 3 0 0 1 6 0z" fill="var(--accent-color)" /><path d="M15 12h-8" /><path d="M10 9l-3 3l3 3" /></svg>
 						</button>
 						<!--[ Start:: Brand Logo icon ]-->
-						<a href="index-2.html" class="brand-icon text-decoration-none d-flex align-items-center" title="HotelAir Admin Template">
+						<a href="index.php" class="brand-icon text-decoration-none d-flex align-items-center">
 							<span class="fw-bold ps-2 fs-5 d-none d-xl-inline-flex text-gradient">Shopercity</span>
 						</a>
 					</div>
@@ -169,7 +169,7 @@
 						</li>
 						<!--[ Start:: user detail ]-->
 						<li class="nav-item user ms-3">
-							<a class="dropdown-toggle gray-6 d-flex text-decoration-none align-items-center lh-sm p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="User" data-bs-auto-close="outside">
+							<a class="dropdown-toggle gray-6 d-flex text-decoration-none align-items-center lh-sm p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
 								<!-- <img class="avatar rounded-circle border border-3" src="assets/images/profile_av.png" alt="avatar"> -->
 								<span class="ms-2 fs-6 d-none d-sm-inline-flex"><?php if(isset($_SESSION) && isset($_SESSION['first_name']) && isset($_SESSION['last_name'])) {echo $_SESSION['first_name'] .' '. $_SESSION['last_name']; } ?></span>
 							</a>
