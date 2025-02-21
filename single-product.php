@@ -7,6 +7,9 @@ if (isset($_GET['shop_id'])) {
 	$qry = "select * from vendor where id='$vendor_id'";
 	$res = mysqli_query($conn, $qry);
 	$row = mysqli_fetch_assoc($res);
+	if(empty($row)){
+		header('Location:index.php');
+	}
 	$descount_id = $row['discount_id'];
 	$qry1 = "select * from discount where id='$descount_id'";
 	$res1 = mysqli_query($conn, $qry1);

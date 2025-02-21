@@ -135,7 +135,7 @@
                                 <?php
                                 if (isset($_GET["cat_id"])) {
                                     $get_catId = $_GET["cat_id"];
-                                    $qry = "SELECT id, store_name, city_id, image, discount_id, street FROM vendor WHERE `category_id` = $get_catId";
+                                    $qry = "SELECT id, store_name, city_id, image, discount_id, street FROM vendor WHERE `category_id` = $get_catId AND  `status` = 1";
                                     $res = mysqli_query($conn, $qry);
                                     // while ($row = mysqli_fetch_assoc($res)) {
                                     //     print_r($row);
