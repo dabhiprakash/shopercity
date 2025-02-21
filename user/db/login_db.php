@@ -24,8 +24,8 @@ if (isset($_REQUEST['email']) && isset($_REQUEST['password'])) {
       $_SESSION['referral_id']  =   $fetch_row['referral_id'] != null ? $fetch_row['referral_id'] : "";
       $_SESSION['aadhar_number']=   $fetch_row['aadhar_number'] != null ? $fetch_row['aadhar_number'] : "";
       $_SESSION['is_active']    =   $fetch_row['is_active'] != null ? $fetch_row['is_active'] : "";
-      $_SESSION['success_msg']  =   "Login Successfully";
-      header("location:add-vendor.php");
+      $_SESSION['msg_success']  =   "Login Successfully";
+      header("location:vendor.php");
       die;
     } else {
       $_SESSION['error_msg'] = 'Wrong Email Or Password';
