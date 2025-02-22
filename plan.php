@@ -206,9 +206,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <a href="user/login.php" class="text-center btn w-25">Add Your Business</a>
-                        </div>
                     </div>
                 </div>
             </div>

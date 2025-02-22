@@ -13,6 +13,19 @@
         <?php 
             require_once "include/header_script.php";
           ?>
+          <style>
+        .main-contact-now-icon{
+            display:none;
+        }
+        header .header-left .logo{
+            margin:0px;
+        }
+        header .header-left{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    </style>
     </head>
     <body>
         <div class="page-wrapper">
