@@ -52,7 +52,7 @@
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="signin">
-                                            <form action="db/login_db.php" >
+                                            <form action="db/login_db.php" method="post">
                                                 <div class="form-group mb-3">
                                                     <input type="text" class="form-control" id="singin-email" name="email" placeholder="Email Address *" required />
                                                 </div>
@@ -66,7 +66,6 @@
                                                             name="signin-remember" />
                                                         <label class="form-control-label" for="signin-remember">Remember me</label>
                                                     </div>
-                                                    <!-- <a href="#" class="lost-link">Lost your password?</a> -->
                                                 </div>
                                                 <button class="btn btn-dark btn-block btn-rounded" type="submit">Login</button>
                                             </form>

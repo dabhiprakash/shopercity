@@ -8,28 +8,7 @@ if (isset($_POST['search'])) {
 }
 ?>
 <div class="row d-flex flex-column align-items-end w-100" style="position: absolute; z-index: 10;">
-<script>
-<?php 
-  //if(!empty($_SESSION['success_msg'])){ 
-?>
- // toastr.success("<?php echo $_SESSION['success_msg']; ?>");
-<?php 
-  //unset($_SESSION['success_msg']); 
-?>
-<?php 
-  //}
-?>
 
-<?php 
- // if(!empty($_SESSION['error_msg'])){ 
-?>
-  //toastr.error("<?php echo $_SESSION['error_msg']; ?>");
-<?php 
-  //unset($_SESSION['error_msg']); 
-?>
-<?php
-  //} 
-?>
 </script>
     <?php
     if (isset ($_SESSION)) {

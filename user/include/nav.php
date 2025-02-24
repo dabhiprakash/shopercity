@@ -1,7 +1,7 @@
 <?php 
     require_once "../db/connection.php";
     if (empty ($_SESSION['user_id'])) {
-        header("location:login.php");
+        header("location:../login.php");
     }
 ?>
 <aside class="ps-xl-5 ps-lg-4 ps-3 pe-2 py-3 sidebar sticky-top" data-bs-theme="none">
