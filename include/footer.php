@@ -48,9 +48,9 @@
             <div class="row justified-content-center">
                 <div class="col-md-12">
                     <div class="widget d-flex align-items-center flex-column">
-                        <h4 class="widget-title">Add your business</h4>
-                        <ul class="widget-body">
-                            <li><a href="User/index.php" class="btn">Add Now</a></li>
+                        <h4 class="widget-title p-0">Add your business</h4>
+                        <ul class="widget-body p-0">
+                            <li><a href="user/index.php" class="btn">Add Now</a></li>
                         </ul>
                     </div>
                 </div>
