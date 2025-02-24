@@ -70,7 +70,7 @@ if (isset($_POST['search'])) {
 
             </div>
             <div class="header-right main-contact-now-icon">
-                <a href="tel:919265744500" class="icon-box icon-box-side">
+                <!-- <a href="tel:919265744500" class="icon-box icon-box-side">
                     <div class="icon-box-icon mr-0 mr-lg-2">
                         <i class="d-icon-phone"></i>
                     </div>
@@ -78,7 +78,7 @@ if (isset($_POST['search'])) {
                         <p>+91 92657 44500</p>
                         <h4 class="icon-box-title">Call Us Now:</h4>
                     </div>
-                </a>
+                </a> -->
                 <div class="header-search hs-toggle mobile-search">
                     <a href="#" class="search-toggle">
                         <i class="d-icon-search"></i>

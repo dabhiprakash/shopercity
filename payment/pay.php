@@ -59,14 +59,19 @@ if (mysqli_query($conn, $sql)) {
   ]);
 
   $response = curl_exec($curl);
-
+  // print_r($response);
+  $res = json_decode($response);
   $err = curl_error($curl);
+  
   curl_close($curl);
-
+  if($res->code == "BLOCKED_MERCHANT") {
+    $_SESSION['error_msg'] = $res->message;
+    header('Location: ../plan.php');
+  }
   if ($err) {
     echo "cURL Error #:" . $err;
   } else {
-    $res = json_decode($response);
+    // $res = json_decode($response);
     if (isset($res->success) && $res->success == '1') {
       // $paymentCode=$res->code;
       // $paymentMsg=$res->message;

@@ -133,3 +133,14 @@
 .footer .widget-about p{
     margin-bottom: 2rem!important;
 }
+.main-contact-now-icon{
+    display:none;
+    }
+    header .header-left .logo{
+    margin:0px;
+    }
+    header .header-left{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    }

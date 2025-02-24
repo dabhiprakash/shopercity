@@ -290,7 +290,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                             </div>
                                             <div style="padding: 20px 60px; border: 1px solid; border-radius: 10px; margin: 10px;" class="col-md-5 col-lg-5 col-sm-12">
                                                 <h5>Shared User</h5>
-                                                <span style="padding:0px 3px;">₹</span>
+                                                <!-- <span style="padding:0px 3px;">₹</span> -->
                                                 <?php echo mysqli_num_rows($res); ?>
                                             </div>
                                         </div>

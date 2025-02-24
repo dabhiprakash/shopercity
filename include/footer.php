@@ -45,6 +45,16 @@
                     </div>
                 </div>
             </div>
+            <div class="row justified-content-center">
+                <div class="col-md-12">
+                    <div class="widget d-flex align-items-center flex-column">
+                        <h4 class="widget-title">Add your business</h4>
+                        <ul class="widget-body">
+                            <li><a href="User/index.php" class="btn">Add Now</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="footer-bottom">
